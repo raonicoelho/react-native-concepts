@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect }  from "react";
 
 import {
   SafeAreaView,
@@ -9,7 +9,6 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
-import { useState, useEffect } from "react";
 import api from "./services/api";
 
 export default function App() {
@@ -44,7 +43,7 @@ export default function App() {
       <SafeAreaView style={styles.container}>
         <FlatList 
         data={repositories}
-        keyExtractor={respository => repository.id}
+        keyExtractor={repository => repository.id}
         renderItem={({ item: repository }) => (
           <View style={styles.repositoryContainer}>
           <Text style={styles.repository}>{repository.title}</Text>
@@ -67,7 +66,7 @@ export default function App() {
           </View>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => handleLikeRepository(respository.id)}
+            onPress={() => handleLikeRepository(repository.id)}
             testID={`like-button-${repository.id}`}
           >
             <Text style={styles.buttonText}>Curtir</Text>
